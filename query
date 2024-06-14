@@ -1,0 +1,46 @@
+INSERT INTO applicant_details(applicant_id, applicant_name, aadhar_no, applicant_status, family_member_count, mobile_no, full_address, state, district, block, pincode, gas_conn_available, bpl_registered, aadhar_image_name, personal_image_name, created_by, last_updated_by) VALUES (0,Ram Ji,123456789012,10,5,1234567890,Same Street Same Landmark Same Location,1,1,1,123456,1,1,img.jpg,img.jpg,admin,admin)
+
+
+SELECT applicant_id, applicant_name, aadhar_no, applicant_status, family_member_count, mobile_no, full_address, state, district, block, pincode, gas_conn_available, bpl_registered, aadhar_image_name, personal_image_name, create_ts, created_by, last_updated_ts, last_updated_by 
+FROM applicant_details WHERE applicant_id = :applicant_id
+
+
+SELECT d.districtid,s.stateid,b.blockid FROM district d,block b,state s,agent_details ad WHERE ad.blockid = b.blockid AND b.districtid = d.districtid AND d.stateid = s.stateid;
+
+
+
+SELECT applicant_id, applicant_name, aadhar_no, applicant_status, family_member_count, mobile_no, full_address,  
+                         s.state_name ,d.district_name, b.block_name, pincode, gas_conn_available, bpl_registered, aadhar_image_name, 
+                         personal_image_name, create_ts, created_by, last_updated_ts, last_updated_by 
+                         FROM applicant_details ad, state s, district d, block b 
+                         WHERE ad.applicant_id = 25 
+                         AND ad.blockid = b.blockid AND ad.districtid = d.districtid AND ad.stateid = s.stateid  );
+
+
+
+SELECT count(applicant_id),applicant_status FROM `applicant_details` group by applicant_status;
+
+
+SELECT count(applicant_id) FROM applicant_details WHERE applicant_status = 20;
+
+value="<?php echo $data['applicantId'] ?>"
+
+
+TIMEZONE 
+
+<?php $currentDate = date('Y-m-d'); $todaydate=$currentDate.' 00:00:00'; echo $todaydate;  $newDate = date('Y-m-d H:i:s', strtotime($todaydate. ' -11 hours')); echo $newDate; ?>
+        <?php $currentDate = date('Y-m-d'); $todaydate=$currentDate.' 00:00:00'; $todayMinusDate = strtotime($todaydate)-11.5*60*60; $todayMinusDateTS = date('Y-m-d H:i:s',$todayMinusDate); echo $todayMinusDateTS;?>
+        <?php $currentDate = date('Y-m-d'); $todaydate=$currentDate.' 23:59:59'; $todayMinusDate = strtotime($todaydate)-11.5*60*60; $todayMinusDateTS = date('Y-m-d H:i:s',$todayMinusDate); echo $todayMinusDateTS;?>
+        <?php echo date_default_timezone_get();?>
+
+
+
+SELECT d.districtid,s.stateid,b.blockid,ad.login_id,ad.agent_name, count(applicant_id)
+                        FROM district d,block b,state s,agent_details ad, applicant_details apd 
+                         WHERE ad.login_id = 'qwer' AND ad.blockid = b.blockid AND b.districtid = d.districtid AND d.stateid = s.stateid AND apd.created_by = ad.login_id;
+
+
+SELECT d.districtid,s.stateid,b.blockid,ad.login_id,ad.agent_name, count(applicant_id)
+                        FROM district d,block b,state s,agent_details ad, applicant_details apd 
+                         WHERE ad.login_id = 'qwer' AND ad.blockid = b.blockid AND b.districtid = d.districtid AND d.stateid = s.stateid AND apd.created_by = ad.login_id
+                         AND apd.create_ts BETWEEN '2023-06-09 23:25:51' and '2023-06-10 23:25:51';
